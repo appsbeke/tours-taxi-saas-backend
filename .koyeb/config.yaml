@@ -1,0 +1,44 @@
+app:
+  name: tours-taxi-backend
+  
+services:
+  - name: backend-api
+    type: web
+    build:
+      type: docker
+      dockerfile: Dockerfile
+    
+    ports:
+      - port: 3000
+        protocol: http
+    
+    env:
+      - name: NODE_ENV
+        value: production
+      - name: PORT
+        value: "3000"
+      - name: API_PREFIX
+        value: api
+      - name: API_VERSION
+        value: v1
+      - name: JWT_SECRET
+        secret: jwt-secret
+      - name: JWT_EXPIRES_IN
+        value: 15m
+      - name: REFRESH_TOKEN_SECRET
+        secret: refresh-token-secret
+      - name: REFRESH_TOKEN_EXPIRES_IN
+        value: 7d
+    
+    health_check:
+      http:
+        path: /health
+        port: 3000
+    
+    regions:
+      - was
+    
+    instance_type: nano
+    scaling:
+      min: 1
+      max: 1
