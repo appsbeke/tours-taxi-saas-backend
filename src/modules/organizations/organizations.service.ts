@@ -11,7 +11,7 @@ import {
   OrganizationStatus,
   SubscriptionPlan,
 } from '../../entities/organization.entity';
-import { OrganizationMember, OrganizationRole } from '../../entities/organization-member.entity';
+import { OrganizationMember, OrganizationRole, MemberStatus } from '../../entities/organization-member.entity';
 import { User } from '../../entities/user.entity';
 
 @Injectable()
@@ -74,7 +74,7 @@ export class OrganizationsService {
       organizationId: savedOrg.id,
       userId: createDto.ownerId,
       role: OrganizationRole.OWNER,
-      status: 'active',
+      status: MemberStatus.ACTIVE,
     });
 
     await this.membersRepo.save(owner);

@@ -51,6 +51,13 @@ import { AuditModule } from './modules/audit/audit.module';
 import { FileUploadModule } from './modules/file-upload/file-upload.module';
 import { WebsocketModule } from './modules/websocket/websocket.module';
 
+// Multi-Tenant SaaS Modules
+import { OrganizationsModule } from './modules/organizations/organizations.module';
+import { InvitationsModule } from './modules/invitations/invitations.module';
+import { SubscriptionsModule } from './modules/subscriptions/subscriptions.module';
+import { PlatformAdminModule } from './modules/platform-admin/platform-admin.module';
+import { DomainsModule } from './modules/domains/domains.module';
+
 @Module({
   controllers: [AppController],
   imports: [
@@ -120,6 +127,13 @@ import { WebsocketModule } from './modules/websocket/websocket.module';
     // Infrastructure Modules
     FileUploadModule,
     WebsocketModule,
+
+    // Multi-Tenant SaaS Modules
+    OrganizationsModule,
+    InvitationsModule,
+    SubscriptionsModule,
+    PlatformAdminModule,
+    DomainsModule,
   ],
 })
 export class AppModule {}

@@ -62,7 +62,6 @@ export class Organization {
 
   @Column({ name: 'hides_powered_by', default: false })
   hidesPoweredBy: boolean;
-  primaryColor: string;
 
   @Column({
     type: 'enum',
@@ -142,16 +141,9 @@ export class Organization {
   @Column({ nullable: true })
   timezone: string;
 
-  // Custom domain for enterprise
-  @Column({ name: 'custom_domain', nullable: true })
-  customDomain: string;
-
   // Feature flags
   @Column({ name: 'api_access_enabled', default: false })
   apiAccessEnabled: boolean;
-
-  @Column({ name: 'white_label_enabled', default: false })
-  whiteLabelEnabled: boolean;
 
   @Column({ name: 'advanced_analytics_enabled', default: false })
   advancedAnalyticsEnabled: boolean;
