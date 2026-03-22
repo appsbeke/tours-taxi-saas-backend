@@ -6,13 +6,19 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+Index,
 } from 'typeorm';
 import { CustomerProfile } from './customer-profile.entity';
 
 @Entity('payment_methods')
+@Index(['organizationId'])
 export class PaymentMethod {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'customer_id', type: 'uuid' })
   customerId: string;

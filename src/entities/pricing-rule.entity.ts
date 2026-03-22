@@ -4,12 +4,18 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+Index,
 } from 'typeorm';
 
 @Entity('pricing_rules')
+@Index(['organizationId'])
 export class PricingRule {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ length: 100 })
   name: string;

@@ -5,13 +5,19 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+Index,
 } from 'typeorm';
 import { PromoRedemption } from './promo-redemption.entity';
 
 @Entity('promo_codes')
+@Index(['organizationId'])
 export class PromoCode {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ length: 50, unique: true })
   code: string;

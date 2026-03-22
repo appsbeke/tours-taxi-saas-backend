@@ -3,12 +3,18 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+Index,
 } from 'typeorm';
 
 @Entity('audit_logs')
+@Index(['organizationId'])
 export class AuditLog {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'user_id', type: 'uuid', nullable: true })
   userId: string;

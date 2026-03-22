@@ -5,13 +5,19 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+Index,
 } from 'typeorm';
 import { Vehicle } from './vehicle.entity';
 
 @Entity('vehicle_types')
+@Index(['organizationId'])
 export class VehicleType {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ length: 100 })
   name: string;

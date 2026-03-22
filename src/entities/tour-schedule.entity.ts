@@ -6,14 +6,20 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+Index,
 } from 'typeorm';
 import { Tour } from './tour.entity';
 import { GuideProfile } from './guide-profile.entity';
 
 @Entity('tour_schedules')
+@Index(['organizationId'])
 export class TourSchedule {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'tour_id', type: 'uuid' })
   tourId: string;

@@ -8,6 +8,7 @@ import {
   OneToOne,
   OneToMany,
   JoinColumn,
+Index,
 } from 'typeorm';
 import { CustomerProfile } from './customer-profile.entity';
 import { RideBooking } from './ride-booking.entity';
@@ -16,9 +17,14 @@ import { Payment } from './payment.entity';
 import { BookingStatusHistory } from './booking-status-history.entity';
 
 @Entity('bookings')
+@Index(['organizationId'])
 export class Booking {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'booking_number', length: 50, unique: true })
   bookingNumber: string;

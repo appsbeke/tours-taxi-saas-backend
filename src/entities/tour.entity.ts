@@ -7,15 +7,21 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
+Index,
 } from 'typeorm';
 import { TourCategory } from './tour-category.entity';
 import { TourImage } from './tour-image.entity';
 import { TourSchedule } from './tour-schedule.entity';
 
 @Entity('tours')
+@Index(['organizationId'])
 export class Tour {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'category_id', type: 'uuid' })
   categoryId: string;

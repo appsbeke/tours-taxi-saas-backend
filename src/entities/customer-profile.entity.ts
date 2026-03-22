@@ -6,13 +6,19 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+Index,
 } from 'typeorm';
 import { User } from './user.entity';
 
 @Entity('customer_profiles')
+@Index(['organizationId'])
 export class CustomerProfile {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'user_id', type: 'uuid', unique: true })
   userId: string;

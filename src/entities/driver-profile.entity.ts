@@ -7,14 +7,20 @@ import {
   OneToOne,
   OneToMany,
   JoinColumn,
+Index,
 } from 'typeorm';
 import { User } from './user.entity';
 import { Vehicle } from './vehicle.entity';
 
 @Entity('driver_profiles')
+@Index(['organizationId'])
 export class DriverProfile {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'user_id', type: 'uuid', unique: true })
   userId: string;

@@ -6,14 +6,21 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  Index,
 } from 'typeorm';
 import { DriverProfile } from './driver-profile.entity';
 import { VehicleType } from './vehicle-type.entity';
 
 @Entity('vehicles')
+@Index(['organizationId'])
+@Index(['organizationId', 'licensePlate'])
 export class Vehicle {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'driver_id', type: 'uuid' })
   driverId: string;

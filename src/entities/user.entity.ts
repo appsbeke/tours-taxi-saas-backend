@@ -8,6 +8,7 @@ import {
   OneToOne,
   ManyToMany,
   JoinTable,
+  Index,
 } from 'typeorm';
 import { CustomerProfile } from './customer-profile.entity';
 import { DriverProfile } from './driver-profile.entity';
@@ -15,9 +16,15 @@ import { GuideProfile } from './guide-profile.entity';
 import { Role } from './role.entity';
 
 @Entity('users')
+@Index(['organizationId', 'phone'])
+@Index(['organizationId', 'email'])
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ unique: true, length: 20 })
   phone: string;

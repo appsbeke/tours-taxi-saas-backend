@@ -6,13 +6,19 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+Index,
 } from 'typeorm';
 import { Booking } from './booking.entity';
 
 @Entity('payments')
+@Index(['organizationId'])
 export class Payment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'booking_id', type: 'uuid' })
   bookingId: string;

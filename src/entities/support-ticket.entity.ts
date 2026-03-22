@@ -5,13 +5,19 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+Index,
 } from 'typeorm';
 import { SupportMessage } from './support-message.entity';
 
 @Entity('support_tickets')
+@Index(['organizationId'])
 export class SupportTicket {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'ticket_number', length: 50, unique: true })
   ticketNumber: string;

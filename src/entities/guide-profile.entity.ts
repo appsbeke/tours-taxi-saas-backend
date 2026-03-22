@@ -6,13 +6,19 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+Index,
 } from 'typeorm';
 import { User } from './user.entity';
 
 @Entity('guide_profiles')
+@Index(['organizationId'])
 export class GuideProfile {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ name: 'organization_id', type: 'uuid', nullable: true })
+  @Index()
+  organizationId: string;
 
   @Column({ name: 'user_id', type: 'uuid', unique: true })
   userId: string;
